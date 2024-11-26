@@ -1,2 +1,2 @@
 //add your constants here
-export const DB_NAME = "youtube"
+export const DB_NAME = ""

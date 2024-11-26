@@ -11,7 +11,8 @@ app.use(cors({
 }))
 
 //allows to recieve json data
-app.use( express.json({limit:'50kb'}) );
+// app.use( express.json({limit:'50kb'}) ); we can add limit
+app.use(express.json())
 
 //allows to share data encoded in url
 app.use(express.urlencoded({extended:true}));
