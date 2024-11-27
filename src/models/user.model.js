@@ -5,7 +5,6 @@ import jwt from 'jsonwebtoken'
 
 const userSchema = Schema({
     username : { type : String, unique:true, required:true, lowercase:true, trim:true, index:true },
-    watchHistory: [ { type: mongoose.Schema.Types.ObjectId, ref:"Video" } ],
     email:{ type:String, unique:true, required:true, lowercase:true, trim:true },
     fullName:{ type:String, required:true, lowercase:true, trim:true,  },
     avatar: { type:String, required:true },
