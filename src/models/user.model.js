@@ -51,5 +51,5 @@ userSchema.methods.generateRequestToken = function (){
 )
 }
 
-
-export default User = mongoose.model("User",userSchema)
+User = mongoose.model("User",userSchema)
+export default User
