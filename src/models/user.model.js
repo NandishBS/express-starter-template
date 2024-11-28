@@ -1,10 +1,10 @@
-//continue if required or delete user.model.js and create new files
 import mongoose, { Schema } from 'mongoose'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
 const userSchema = Schema({
     username : { type : String, unique:true, required:true, lowercase:true, trim:true, index:true },
+    watchHistory: [ { type: mongoose.Schema.Types.ObjectId, ref:"Video" } ],
     email:{ type:String, unique:true, required:true, lowercase:true, trim:true },
     fullName:{ type:String, required:true, lowercase:true, trim:true,  },
     avatar: { type:String, required:true },
@@ -26,7 +26,6 @@ userSchema.methods.isPasswordCorrect = async function (password) {
     return await bcrypt.compare(password, this.password)
 }
 
-// adding method to generate access token
 userSchema.methods.generateAccessToken= function() {
     return jwt.sign({
         _id : this._id,
@@ -41,7 +40,6 @@ userSchema.methods.generateAccessToken= function() {
 )
 }
 
-//adding method to generate request token
 userSchema.methods.generateRequestToken = function (){
     return jwt.sign({
         _id : this._id,
@@ -52,5 +50,6 @@ userSchema.methods.generateRequestToken = function (){
     }
 )
 }
+
 
 export default User = mongoose.model("User",userSchema)
